@@ -90,10 +90,52 @@ Para forçar a visualização durante o desenvolvimento, use o parâmetro
 - `index.php?forcar=professor` → força a tela do professor
 - `index.php?forcar=aluno` → força a tela do aluno
 
+## Sistema de login (funcional)
+
+O projeto agora tem autenticação real, com banco de dados **SQLite**
+(criado automaticamente em `data/eduplataforma.sqlite` na primeira
+execução — não precisa configurar nada).
+
+### Recursos implementados
+
+- Cadastro e login de **professores** (por e-mail) e **alunos** (por nome + código do mural).
+- Senhas com hash `bcrypt` (`password_hash` / `password_verify`), nunca em texto puro.
+- Proteção **CSRF** em todos os formulários (login, cadastro, logout).
+- Sessões seguras: cookie `httponly`, id de sessão regenerado no login.
+- Bloqueio temporário (5 minutos) após 5 tentativas de login erradas.
+- Páginas protegidas (`pages/painel_professor.php`, `pages/painel_aluno.php`)
+  que só abrem para quem estiver logado com o perfil correto.
+- Botão de sair (`actions/logout.php`) que encerra a sessão.
+
+### Como testar
+
+```bash
+composer install          # se a pasta vendor/ não estiver presente
+php -S localhost:8000
+```
+
+Acesse `http://localhost:8000/`, use `?forcar=professor` ou `?forcar=aluno`
+para alternar a tela sem trocar de dispositivo, cadastre uma conta e faça login.
+
+### Estrutura adicionada
+
+```
+includes/
+├── Database.php     # conexão SQLite + criação das tabelas
+└── Auth.php          # cadastro, login, logout, CSRF, rate limiting
+actions/
+├── criar_professor.php
+├── criar_aluno.php
+└── logout.php
+pages/
+├── cadastro_aluno.php
+├── painel_professor.php
+└── painel_aluno.php
+data/                  # criado automaticamente (ignorado pelo git)
+```
+
 ## Próximos passos sugeridos
 
-- Conectar `actions/autenticar_professor.php` e `actions/autenticar_aluno.php`
-  a um banco de dados real, com senhas com hash (`password_hash` / `password_verify`).
-- Criar `pages/painel_professor.php` e `pages/painel_aluno.php` (áreas logadas).
-- Adicionar proteção CSRF nos formulários de login.
-- Adicionar testes para os principais user agents (desktop, Android, iOS).
+- Adicionar recuperação de senha por e-mail.
+- Adicionar testes automatizados para os principais user agents (desktop, Android, iOS).
+- Migrar de SQLite para MySQL/PostgreSQL em produção, se necessário.

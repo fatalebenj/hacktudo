@@ -17,7 +17,7 @@
 
 <header class="site-header">
     <div class="container header-inner">
-        <a href="/index.php" class="logo">📚 EduPlataforma</a>
+        <a href="/index.php" class="logo">QuackMural</a>
 
         <nav class="main-nav">
             <ul>
