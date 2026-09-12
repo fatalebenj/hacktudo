@@ -45,22 +45,4 @@ include __DIR__ . '/includes/header.php';
     <?php endif; ?>
 </section>
 
-<section class="destaques">
-    <h2>Por que estudar com a gente?</h2>
-    <div class="cards">
-        <div class="card">
-            <h3>📖 Conteúdo atualizado</h3>
-            <p>Cursos revisados constantemente por especialistas.</p>
-        </div>
-        <div class="card">
-            <h3>🎓 Certificados</h3>
-            <p>Receba certificado ao concluir cada curso.</p>
-        </div>
-        <div class="card">
-            <h3>💬 Suporte</h3>
-            <p>Tire dúvidas com professores e monitores.</p>
-        </div>
-    </div>
-</section>
-
 <?php include __DIR__ . '/includes/footer.php'; ?>
