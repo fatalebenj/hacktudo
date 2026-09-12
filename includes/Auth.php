@@ -13,6 +13,7 @@
  */
 
 require_once __DIR__ . '/Database.php';
+require_once __DIR__ . '/Mural.php';
 
 class Auth
 {
@@ -178,13 +179,19 @@ class Auth
     }
 
     // ---------------------------------------------------------------
-    // Alunos (login por nome + codigo do mural)
+    // Alunos (entram em um mural usando nome + codigo do mural)
     // ---------------------------------------------------------------
 
+    /**
+     * O aluno "loga" simplesmente entrando em um mural existente com o
+     * codigo correto. Nao ha senha: o codigo do mural e o convite.
+     * Se o nome ja apareceu antes nesse mural, reaproveita o registro;
+     * caso contrario cria um novo aluno vinculado ao mural.
+     */
     public static function autenticarAluno(string $nome, string $codigo): array
     {
         $nome = trim($nome);
-        $codigo = trim($codigo);
+        $codigo = strtoupper(trim($codigo));
 
         if ($nome === '' || $codigo === '') {
             return [false, 'Informe nome e codigo do mural.'];
@@ -194,13 +201,30 @@ class Auth
             return [false, 'Muitas tentativas erradas. Tente novamente em alguns minutos.'];
         }
 
-        $pdo = Database::getConnection();
-        $stmt = $pdo->prepare('SELECT * FROM alunos WHERE codigo_mural = ?');
-        $stmt->execute([$codigo]);
-        $aluno = $stmt->fetch();
+        $mural = Mural::buscarPorCodigo($codigo);
+
+        if (!$mural) {
+            self::registrarFalha($codigo, 'aluno');
+            return [false, 'Codigo de mural invalido.'];
+        }
 
         self::limparTentativas($codigo, 'aluno');
-        self::iniciarSessao('aluno', (int) $aluno['id'], $aluno['nome'], null);
+
+        $pdo = Database::getConnection();
+        $stmt = $pdo->prepare('SELECT * FROM alunos WHERE mural_id = ? AND nome = ?');
+        $stmt->execute([$mural['id'], $nome]);
+        $aluno = $stmt->fetch();
+
+        if (!$aluno) {
+            $stmt = $pdo->prepare('INSERT INTO alunos (mural_id, nome, codigo_mural) VALUES (?, ?, ?)');
+            $stmt->execute([$mural['id'], $nome, $codigo]);
+            $alunoId = (int) $pdo->lastInsertId();
+        } else {
+            $alunoId = (int) $aluno['id'];
+        }
+
+        self::iniciarSessao('aluno', $alunoId, $nome, null);
+        $_SESSION['mural_id'] = (int) $mural['id'];
 
         return [true, null];
     }
@@ -258,6 +282,13 @@ class Auth
             'nome' => $_SESSION['nome'],
             'email' => $_SESSION['email'] ?? null,
         ];
+    }
+
+    /** Mural que o aluno logado atualmente esta acessando (ou null). */
+    public static function muralIdAtual(): ?int
+    {
+        self::start();
+        return isset($_SESSION['mural_id']) ? (int) $_SESSION['mural_id'] : null;
     }
 
     /**

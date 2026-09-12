@@ -59,5 +59,31 @@ class Database
                 UNIQUE(identificador, perfil)
             )
         ');
+
+        // Murais criados pelos professores. Cada mural tem um codigo
+        // alfanumerico unico usado pelos alunos para entrar.
+        $pdo->exec('
+            CREATE TABLE IF NOT EXISTS murais (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                professor_id INTEGER NOT NULL,
+                titulo TEXT NOT NULL,
+                codigo TEXT NOT NULL UNIQUE,
+                criado_em TEXT NOT NULL DEFAULT (datetime(\'now\')),
+                FOREIGN KEY (professor_id) REFERENCES professores(id) ON DELETE CASCADE
+            )
+        ');
+
+        // Alunos entram em um mural especifico usando nome + codigo do mural.
+        // Nao ha senha: o codigo do mural funciona como convite/autenticacao.
+        $pdo->exec('
+            CREATE TABLE IF NOT EXISTS alunos (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                mural_id INTEGER NOT NULL,
+                nome TEXT NOT NULL,
+                codigo_mural TEXT NOT NULL,
+                criado_em TEXT NOT NULL DEFAULT (datetime(\'now\')),
+                FOREIGN KEY (mural_id) REFERENCES murais(id) ON DELETE CASCADE
+            )
+        ');
     }
 }
