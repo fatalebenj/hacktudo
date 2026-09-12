@@ -10,11 +10,17 @@
  *
  * A deteccao eh feita com a biblioteca foroco/browser-detection.
  */
+require_once __DIR__ . '/vendor/autoload.php';
 
-require_once __DIR__ . '/includes/DeviceDetector.php';
+use foroco\BrowserDetection;
 
-$detector = new DeviceDetector();
-$device   = $detector->getDeviceType(); // 'desktop' ou 'mobile'
+$Browser = new BrowserDetection();
+$useragent = $_SERVER['HTTP_USER_AGENT'] ?? '';
+
+// Get OS data (array):
+$result = $Browser->getOS($useragent);
+$device = $result['os_type'];
+
 
 // Permite forcar manualmente a visualizacao (util para testes),
 // ex: index.php?forcar=aluno  ou  index.php?forcar=professor

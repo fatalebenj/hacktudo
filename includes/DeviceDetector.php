@@ -2,10 +2,8 @@
 /**
  * DeviceDetector.php
  *
- * Responsavel por detectar se o dispositivo que acessa o site
- * eh um Desktop ou um Mobile, usando a biblioteca foroco/browser-detection.
- *
- * Documentacao da lib: https://github.com/foroco/php-device-detector
+ * Detecta se o dispositivo que acessa o site e desktop ou mobile,
+ * utilizando a biblioteca foroco/php-browser-detection.
  */
 
 require_once __DIR__ . '/../vendor/autoload.php';
@@ -14,53 +12,48 @@ use foroco\BrowserDetection;
 
 class DeviceDetector
 {
-    private BrowserDetection $Browser;
-    private string $useragent;
-    private array $osInfo;
+    private $browser;
+    private $userAgent;
 
-    public function __construct()
+    public function __construct($userAgent = null)
     {
-        $this->Browser   = new BrowserDetection();
-        $this->useragent = $_SERVER['HTTP_USER_AGENT'] ?? '';
-        $this->osInfo    = $this->Browser->getOS($this->useragent);
+        $this->browser = new BrowserDetection();
+        $this->userAgent = $userAgent !== null ? $userAgent : ($_SERVER['HTTP_USER_AGENT'] ?? '');
     }
 
-    /**
-     * Retorna 'mobile' ou 'desktop' de acordo com o resultado da lib foroco.
-     *
-     * O array retornado por getOS() traz, entre outras chaves,
-     * 'device_type', que pode ser: desktop, smartphone, tablet, tv, etc.
-     */
-    public function getDeviceType(): string
+    public function getDeviceType()
     {
-        $deviceType = $this->osInfo['device_type'] ?? 'desktop';
+        $osResult = $this->browser->getOS($this->userAgent);
+        if (is_array($osResult) && isset($osResult['os_type'])) {
+            $osType = strtolower((string) $osResult['os_type']);
 
-        // Trata tablet e smartphone como "mobile" para fins de tela de login
-        if (in_array($deviceType, ['smartphone', 'tablet'], true)) {
+            if (in_array($osType, ['mobile', 'mixed'], true)) {
+                return 'mobile';
+            }
+
+            if ($osType === 'desktop') {
+                return 'desktop';
+            }
+        }
+
+        $deviceResult = $this->browser->getDevice($this->userAgent);
+        if (is_array($deviceResult) && isset($deviceResult['device_type'])) {
+            $deviceType = strtolower((string) $deviceResult['device_type']);
+
+            if (in_array($deviceType, ['smartphone', 'tablet', 'mobile'], true)) {
+                return 'mobile';
+            }
+
+            if ($deviceType === 'desktop') {
+                return 'desktop';
+            }
+        }
+
+        $ua = strtolower($this->userAgent);
+        if (preg_match('/android|iphone|ipad|ipod|mobile|phone/i', $ua)) {
             return 'mobile';
         }
 
         return 'desktop';
-    }
-
-    public function isMobile(): bool
-    {
-        return $this->getDeviceType() === 'mobile';
-    }
-
-    public function isDesktop(): bool
-    {
-        return $this->getDeviceType() === 'desktop';
-    }
-
-    /** Dados brutos retornados pela lib, caso precise depurar. */
-    public function getRawOsInfo(): array
-    {
-        return $this->osInfo;
-    }
-
-    public function getUserAgent(): string
-    {
-        return $this->useragent;
     }
 }

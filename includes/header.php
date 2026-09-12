@@ -22,9 +22,7 @@
         <nav class="main-nav">
             <ul>
                 <li><a href="/index.php">Início</a></li>
-                <li><a href="/pages/cursos.php">Cursos</a></li>
                 <li><a href="/pages/sobre.php">Sobre</a></li>
-                <li><a href="/pages/contato.php">Contato</a></li>
             </ul>
         </nav>
 
