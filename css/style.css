@@ -7,8 +7,8 @@
 
 body {
     font-family: 'Segoe UI', Arial, sans-serif;
-    background: #f4f6f9;
-    color: #1f2937;
+    background: #4c4637;
+    color: #f2fedc;
     line-height: 1.5;
 }
 
@@ -21,12 +21,12 @@ body {
 
 a {
     text-decoration: none;
-    color: #2563eb;
+    color: #eaca49;
 }
 
 /* ===================== HEADER ===================== */
 .site-header {
-    background: #ffffff;
+    background: #1b3d2f;
     border-bottom: 1px solid #e5e7eb;
     position: sticky;
     top: 0;
@@ -45,7 +45,7 @@ a {
 .logo {
     font-size: 1.3rem;
     font-weight: 700;
-    color: #111827;
+    color: #eaca49;
 }
 
 .main-nav ul {
@@ -55,7 +55,7 @@ a {
 }
 
 .main-nav a {
-    color: #374151;
+    color: #b2ab99;
     font-weight: 500;
 }
 
@@ -118,17 +118,17 @@ a {
 }
 
 .login-box {
-    background: #ffffff;
+    background: #b2ab99;
     border-radius: 12px;
     padding: 32px;
     width: 100%;
     max-width: 400px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-    border: 2px solid #2563eb;
+    border: 2px solid #00b195;
 }
 
 .login-box.login-aluno {
-    border-color: #16a34a;
+    border-color: #00eacb;
 }
 
 .login-box h2 {
@@ -188,7 +188,7 @@ a {
 }
 
 .btn-primary {
-    background: #2563eb;
+    background: #00b195;
     color: #fff;
 }
 
@@ -197,7 +197,7 @@ a {
 }
 
 .login-aluno .btn-primary {
-    background: #16a34a;
+    background: #00eacb;
 }
 
 .login-aluno .btn-primary:hover {

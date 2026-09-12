@@ -10,14 +10,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= htmlspecialchars($pageTitle ?? 'EduPlataforma'); ?></title>
+    <title><?= htmlspecialchars($pageTitle ?? 'Quackdro'); ?></title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body class="device-<?= htmlspecialchars($device ?? 'desktop'); ?>">
 
 <header class="site-header">
     <div class="container header-inner">
-        <a href="/index.php" class="logo">QuackMural</a>
+        <a href="/index.php" class="logo">Quackdro</a>
 
         <nav class="main-nav">
             <ul>

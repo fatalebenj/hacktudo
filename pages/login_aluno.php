@@ -7,7 +7,7 @@ require_once __DIR__ . '/../includes/Auth.php';
 ?>
 <div class="login-box login-aluno">
     <h2>Login do Aluno</h2>
-    <p class="subtitle">Entre para acessar seus cursos e atividades.</p>
+    <p class="subtitle">Entre para começar a cooperar em um mural</p>
 
     <form action="/actions/autenticar_aluno.php" method="POST" class="login-form">
         <?= Auth::csrfField(); ?>

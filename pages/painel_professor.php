@@ -8,7 +8,7 @@ Auth::exigirPerfil('professor');
 
 $usuario = Auth::usuarioAtual();
 $device = 'desktop';
-$pageTitle = 'EduPlataforma - Painel do Professor';
+$pageTitle = 'Quackdro - Painel do Professor';
 
 include __DIR__ . '/../includes/header.php';
 ?>

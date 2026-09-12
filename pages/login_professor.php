@@ -7,7 +7,7 @@ require_once __DIR__ . '/../includes/Auth.php';
 ?>
 <div class="login-box login-professor">
     <h2>Login do Professor</h2>
-    <p class="subtitle">Acesse o painel para gerenciar suas turmas e conteúdos.</p>
+    <p class="subtitle">Acesse o painel para gerenciar seus murais</p>
 
     <form action="/actions/autenticar_professor.php" method="POST" class="login-form">
         <?= Auth::csrfField(); ?>

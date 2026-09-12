@@ -6,7 +6,7 @@
  * necessarias para o sistema de login (professores e alunos).
  *
  * SQLite foi escolhido para o hackathon por nao exigir nenhum servidor
- * de banco de dados externo: o arquivo fica em /data/eduplataforma.sqlite
+ * de banco de dados externo: o arquivo fica em /data/quackdro.sqlite
  * e e criado automaticamente na primeira execucao.
  */
 
@@ -22,7 +22,7 @@ class Database
                 mkdir($dbDir, 0775, true);
             }
 
-            $dbPath = $dbDir . '/eduplataforma.sqlite';
+            $dbPath = $dbDir . '/quackdro.sqlite';
             $pdo = new PDO('sqlite:' . $dbPath);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);

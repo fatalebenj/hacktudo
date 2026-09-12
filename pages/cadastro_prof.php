@@ -7,7 +7,7 @@ require_once __DIR__ . '/../includes/Auth.php';
 Auth::start();
 
 $device = 'desktop';
-$pageTitle = 'QuackMural - Cadastro de Professor';
+$pageTitle = 'Quackdro - Cadastro de Professor';
 $erro = $_GET['erro'] ?? null;
 
 include __DIR__ . '/../includes/header.php';
@@ -15,7 +15,7 @@ include __DIR__ . '/../includes/header.php';
 
 <section class="hero">
     <h1>Crie sua conta de Professor</h1>
-    <p>Comece a ensinar na EduPlataforma</p>
+    <p>Comece a ensinar na Quackdro</p>
 </section>
 
 <div class="login-box login-professor">

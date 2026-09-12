@@ -2,7 +2,7 @@
 /**
  * Auth.php
  *
- * Sistema de autenticacao real para EduPlataforma.
+ * Sistema de autenticacao real para Quackdro.
  * Cobre professores (login por e-mail) e alunos (login por codigo do mural).
  *
  * Recursos:

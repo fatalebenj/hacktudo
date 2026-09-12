@@ -1,4 +1,4 @@
-# EduPlataforma — Carcaça de Site de Educação
+# Quackdro — Carcaça de Site de Educação
 
 Estrutura inicial de um site de educação em PHP que detecta o tipo de
 dispositivo do visitante (usando a biblioteca **foroco/browser-detection**)
@@ -93,7 +93,7 @@ Para forçar a visualização durante o desenvolvimento, use o parâmetro
 ## Sistema de login (funcional)
 
 O projeto agora tem autenticação real, com banco de dados **SQLite**
-(criado automaticamente em `data/eduplataforma.sqlite` na primeira
+(criado automaticamente em `data/quackdro.sqlite` na primeira
 execução — não precisa configurar nada).
 
 ### Recursos implementados
