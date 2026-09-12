@@ -18,7 +18,7 @@ include __DIR__ . '/../includes/header.php';
     <p>Comece a ensinar na Quackdro</p>
 </section>
 
-<div class="login-box login-professor">
+<div class="box login-professor">
     <h2>Cadastro do Professor</h2>
     <p class="subtitle">Crie sua conta e comece a ensinar</p>
 

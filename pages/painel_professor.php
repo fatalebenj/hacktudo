@@ -13,20 +13,14 @@ $pageTitle = 'Quackdro - Painel do Professor';
 include __DIR__ . '/../includes/header.php';
 ?>
 
-<section class="hero">
+<section class="box" id="painel-box">
     <h1>Olá, <?= htmlspecialchars($usuario['nome'], ENT_QUOTES, 'UTF-8'); ?> 👋</h1>
-    <p>Este é o seu painel de professor.</p>
-</section>
-
-<div class="login-box">
-    <h2>Painel do Professor</h2>
-    <p class="subtitle">Logado como <?= htmlspecialchars($usuario['email'], ENT_QUOTES, 'UTF-8'); ?></p>
-    <p>Aqui entrariam as ferramentas de gerenciamento de turmas e conteúdos.</p>
-
-    <form action="/actions/logout.php" method="POST" style="margin-top: 1.5rem;">
+    <p class="subtitle" style="grid-column: 1; grid-row: 2;">Logado como <?= htmlspecialchars($usuario['email'], ENT_QUOTES, 'UTF-8'); ?></p> <br>
+    <p style="grid-column: 1; grid-row: 3">Este é o seu painel de professor.</p>
+    <form action="/actions/logout.php" method="POST" style="grid-column: 2; grid-row: 1;">
         <?= Auth::csrfField(); ?>
         <button type="submit" class="btn btn-primary">Sair</button>
     </form>
-</div>
-
+</section>
+<section 
 <?php include __DIR__ . '/../includes/footer.php'; ?>

@@ -5,7 +5,7 @@
  */
 require_once __DIR__ . '/../includes/Auth.php';
 ?>
-<div class="login-box login-aluno">
+<div class="box login-aluno">
     <h2>Login do Aluno</h2>
     <p class="subtitle">Entre para começar a cooperar em um mural</p>
 

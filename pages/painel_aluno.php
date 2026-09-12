@@ -18,7 +18,7 @@ include __DIR__ . '/../includes/header.php';
     <p>Este é o seu painel de aluno.</p>
 </section>
 
-<div class="login-box">
+<div class="box">
     <h2>Painel do Aluno</h2>
     <p>Aqui entrariam seus cursos, atividades e mural.</p>
 
