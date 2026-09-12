@@ -1,0 +1,248 @@
+/* ===================== RESET / BASE ===================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f4f6f9;
+    color: #1f2937;
+    line-height: 1.5;
+}
+
+.container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+a {
+    text-decoration: none;
+    color: #2563eb;
+}
+
+/* ===================== HEADER ===================== */
+.site-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.logo {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+.main-nav ul {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+
+.main-nav a {
+    color: #374151;
+    font-weight: 500;
+}
+
+.device-badge {
+    font-size: 0.85rem;
+    background: #eef2ff;
+    color: #4338ca;
+    padding: 4px 10px;
+    border-radius: 999px;
+}
+
+/* ===================== MAIN / HERO ===================== */
+.main-content {
+    padding: 40px 20px;
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.hero h1 {
+    font-size: 2rem;
+    margin-bottom: 8px;
+    color: #111827;
+}
+
+.hero p {
+    color: #6b7280;
+}
+
+/* ===================== LOGIN ===================== */
+.login-area {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.login-box {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 32px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    border-top: 4px solid #2563eb;
+}
+
+.login-box.login-aluno {
+    border-top-color: #16a34a;
+}
+
+.login-box h2 {
+    margin-bottom: 4px;
+    color: #111827;
+}
+
+.login-box .subtitle {
+    color: #6b7280;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #374151;
+}
+
+.form-group input[type="email"],
+.form-group input[type="password"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 0.95rem;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #2563eb;
+}
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+}
+
+.btn {
+    display: inline-block;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.btn-primary {
+    background: #2563eb;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: #1d4ed8;
+}
+
+.login-aluno .btn-primary {
+    background: #16a34a;
+}
+
+.login-aluno .btn-primary:hover {
+    background: #15803d;
+}
+
+.btn-block {
+    width: 100%;
+}
+
+.login-footer-text {
+    margin-top: 14px;
+    font-size: 0.85rem;
+    text-align: center;
+    color: #6b7280;
+}
+
+/* ===================== DESTAQUES ===================== */
+.destaques {
+    text-align: center;
+}
+
+.destaques h2 {
+    margin-bottom: 24px;
+    color: #111827;
+}
+
+.cards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    width: 260px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* ===================== FOOTER ===================== */
+.site-footer {
+    background: #111827;
+    color: #d1d5db;
+    text-align: center;
+    padding: 24px 0;
+    font-size: 0.85rem;
+}
+
+.footer-links a {
+    color: #93c5fd;
+    margin: 0 6px;
+}
+
+/* ===================== RESPONSIVO ===================== */
+@media (max-width: 640px) {
+    .header-inner {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .main-nav ul {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .login-box {
+        padding: 24px;
+    }
+}
