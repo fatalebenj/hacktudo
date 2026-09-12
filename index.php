@@ -40,7 +40,7 @@ include __DIR__ . '/includes/header.php';
 
 <section class="hero">
     <h1>Bem-vindo à EduPlataforma</h1>
-    <p>Ensino e aprendizado em um só lugar.</p>
+    <p>Ensine e aprenda em conjunto</p>
 </section>
 
 <section class="login-area">

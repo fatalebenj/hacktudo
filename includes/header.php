@@ -25,10 +25,6 @@
                 <li><a href="/pages/sobre.php">Sobre</a></li>
             </ul>
         </nav>
-
-        <div class="device-badge" title="Dispositivo detectado pela biblioteca foroco">
-            <?= $device === 'mobile' ? '📱 Mobile' : '🖥️ Desktop'; ?>
-        </div>
     </div>
 </header>
 

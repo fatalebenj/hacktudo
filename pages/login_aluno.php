@@ -9,22 +9,21 @@
     <p class="subtitle">Entre para acessar seus cursos e atividades.</p>
 
     <form action="/actions/autenticar_aluno.php" method="POST" class="login-form">
+
         <div class="form-group">
-            <label for="email_aluno">E-mail</label>
-            <input type="email" id="email_aluno" name="email" placeholder="seuemail@exemplo.com" required>
+            <label for="nome_aluno">Nome</label>
+            <input type="text" id="nome_aluno" name="nome" placeholder="ex.: Linus" required>
         </div>
 
         <div class="form-group">
-            <label for="senha_aluno">Senha</label>
-            <input type="password" id="senha_aluno" name="senha" placeholder="••••••••" required>
+            <label for="cod_aluno">Código do mural</label>
+            <input type="text" id="codigo" name="codigo" placeholder="ex.: 41639" required>
         </div>
 
         <button type="submit" class="btn btn-primary btn-block">Entrar</button>
     </form>
 
-    <p class="login-footer-text">
-        Ainda não tem conta? <a href="/pages/cadastro_aluno.php">Cadastre-se</a>
-    </p>
+
     <p class="login-footer-text">
         É professor? <a href="?forcar=professor">Clique aqui para acessar como professor</a>
     </p>
