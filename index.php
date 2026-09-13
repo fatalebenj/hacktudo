@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/includes/Auth.php';
+require_once __DIR__ . '/includes/Mural.php';
 
 Auth::start();
 
@@ -8,10 +9,29 @@ require_once __DIR__ . '/includes/DeviceDetector.php';
 $detector = new DeviceDetector();
 $device = $detector->getDeviceType();
 
-// Se ja estiver logado, manda direto para o painel correspondente.
+// Se ja estiver logado, manda direto para onde ele pertence.
+// Professor -> painel dele. Aluno -> nao existe "painel do aluno":
+// ele pertence ao mural em que entrou, entao volta direto pra la.
 if (Auth::usuarioLogado()) {
     $perfil = Auth::perfilAtual();
-    header('Location: ' . ($perfil === 'professor' ? '/pages/painel_professor.php' : '/pages/painel_aluno.php'));
+
+    if ($perfil === 'professor') {
+        header('Location: /pages/painel_professor.php');
+        exit;
+    }
+
+    $muralId = Auth::muralIdAtual();
+    $mural = $muralId ? Mural::buscarPorId($muralId) : null;
+
+    if ($mural) {
+        header('Location: /pages/mural.php?codigo=' . urlencode($mural['codigo']));
+        exit;
+    }
+
+    // Sessao de aluno sem mural valido (situacao inconsistente): desloga
+    // e manda de volta pro login em vez de tentar um painel que nao existe.
+    Auth::logout();
+    header('Location: /index.php');
     exit;
 }
 

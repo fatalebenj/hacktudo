@@ -11,6 +11,7 @@ $usuario = Auth::usuarioAtual();
 $device = 'desktop';
 $pageTitle = 'Quackdro - Painel do Professor';
 $erro = $_GET['erro'] ?? null;
+$sucesso = $_GET['sucesso'] ?? null;
 
 $murais = Mural::listarPorProfessor((int) $usuario['id']);
 
@@ -36,6 +37,10 @@ include __DIR__ . '/../includes/header.php';
     <div class="alert alert-erro"><?= htmlspecialchars($erro, ENT_QUOTES, 'UTF-8'); ?></div>
 <?php endif; ?>
 
+<?php if ($sucesso): ?>
+    <div class="alert alert-sucesso"><?= htmlspecialchars($sucesso, ENT_QUOTES, 'UTF-8'); ?></div>
+<?php endif; ?>
+
 <section class="box hidden" id="form-novo-mural">
     <h2>Criar novo mural</h2>
     <form action="/actions/criar_mural.php" method="POST" class="login-form">
@@ -55,12 +60,21 @@ include __DIR__ . '/../includes/header.php';
     <?php else: ?>
         <ul class="mural-lista">
             <?php foreach ($murais as $mural): ?>
-                <li>
-                    <a href="/pages/mural.php?codigo=<?= urlencode($mural['codigo']); ?>">
-                        <?= htmlspecialchars($mural['titulo'], ENT_QUOTES, 'UTF-8'); ?>
-                    </a>
-                    — código: <strong><?= htmlspecialchars($mural['codigo'], ENT_QUOTES, 'UTF-8'); ?></strong>
-                    (<?= Mural::contarAlunos((int) $mural['id']); ?> aluno(s))
+                <li class="mural-lista-item">
+                    <div class="mural-lista-info">
+                        <a href="/pages/mural.php?codigo=<?= urlencode($mural['codigo']); ?>">
+                            <?= htmlspecialchars($mural['titulo'], ENT_QUOTES, 'UTF-8'); ?>
+                        </a>
+                        — código: <strong><?= htmlspecialchars($mural['codigo'], ENT_QUOTES, 'UTF-8'); ?></strong>
+                        (<?= Mural::contarAlunos((int) $mural['id']); ?> aluno(s))
+                    </div>
+
+                    <form action="/actions/deletar_mural.php" method="POST"
+                          onsubmit="return confirm('Tem certeza que deseja excluir o mural &quot;<?= htmlspecialchars(addslashes($mural['titulo']), ENT_QUOTES, 'UTF-8'); ?>&quot;? Essa acao nao pode ser desfeita e vai apagar todos os alunos e post-its dele.');">
+                        <?= Auth::csrfField(); ?>
+                        <input type="hidden" name="mural_id" value="<?= (int) $mural['id']; ?>">
+                        <button type="submit" class="btn btn-excluir">Excluir</button>
+                    </form>
                 </li>
             <?php endforeach; ?>
         </ul>

@@ -133,6 +133,7 @@ a {
     border: 2px dashed #f5f2e9;
     margin-left: auto;
     margin-right: auto;
+    margin-top:5px;
 }
 
 .box.login-aluno {
@@ -279,4 +280,236 @@ a {
 .mural-lista li {
     padding: 0.5rem 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.mural-lista-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.mural-lista-info {
+    flex: 1;
+    min-width: 200px;
+}
+
+.btn-excluir {
+    background: transparent;
+    color: #f5a3a3;
+    border: 1px solid #f5a3a3;
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-excluir:hover {
+    background: #f5a3a3;
+    color: #1c2b22;
+}
+
+/* ===================== MURAL (QUADRO DE POST-ITS) ===================== */
+
+.mural-topo {
+    max-width: 900px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.mural-topo-info h1 {
+    margin-bottom: 4px;
+}
+
+.mural-codigo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    letter-spacing: 0.2em;
+    color: #f9e26b;
+}
+
+.mural-topo-acoes {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.btn-secundario {
+    display: inline-block;
+    background: transparent;
+    color: #f5f2e9;
+    border: 1px solid #b9c4b6;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-secundario:hover {
+    background: rgba(245, 242, 233, 0.08);
+}
+
+.mural-novo-item {
+    max-width: 900px;
+}
+
+.form-post-it textarea {
+    width: 100%;
+    resize: vertical;
+    padding: 10px 12px;
+    border: 1px solid #3a4a3e;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    background: #1c2b22;
+    color: #f5f2e9;
+}
+
+.form-post-it textarea:focus {
+    outline: none;
+    border-color: #f9e26b;
+}
+
+.form-post-it-rodape {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 14px;
+    flex-wrap: wrap;
+}
+
+.seletor-cor {
+    display: flex;
+    gap: 8px;
+}
+
+.cor-opcao {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 2px solid rgba(245, 242, 233, 0.4);
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+}
+
+.cor-opcao input {
+    position: absolute;
+    opacity: 0;
+    inset: 0;
+    cursor: pointer;
+}
+
+.cor-opcao:has(input:checked) {
+    border-color: #f9e26b;
+    box-shadow: 0 0 0 2px #1c2b22, 0 0 0 4px #f9e26b;
+}
+
+/* O quadro em si: fundo verde-escuro com grade sutil, como um mural fisico */
+.quadro-mural {
+    max-width: 900px;
+    margin: 10px auto 40px;
+    padding: 32px;
+    border-radius: 12px;
+    background-color: #2f4436;
+    background-image:
+        linear-gradient(rgba(245, 242, 233, 0.09) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(245, 242, 233, 0.09) 1px, transparent 1px);
+    background-size: 32px 32px;
+    border: 2px dashed #f5f2e9;
+    min-height: 200px;
+}
+
+.quadro-vazio {
+    color: #d9d4c4;
+    text-align: center;
+    padding: 40px 0;
+}
+
+.post-its {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: flex-start;
+}
+
+.post-it {
+    --post-it-cor: #f5f2e9;
+    --post-it-rot: 0deg;
+    background: var(--post-it-cor);
+    color: #1c2b22;
+    width: 220px;
+    min-height: 160px;
+    padding: 16px;
+    border-radius: 4px;
+    border: 3px solid #6f8f78;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
+    transform: rotate(var(--post-it-rot));
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.15s ease;
+}
+
+.post-it:hover {
+    transform: rotate(0deg) scale(1.03);
+    z-index: 2;
+}
+
+.post-it-texto {
+    font-size: 0.95rem;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    margin-bottom: 12px;
+}
+
+.post-it-rodape {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 0.78rem;
+    color: #3a4a3e;
+    border-top: 1px dashed rgba(58, 74, 62, 0.4);
+    padding-top: 8px;
+}
+
+.post-it-autor {
+    font-weight: 600;
+}
+
+.post-it-remover button {
+    background: none;
+    border: none;
+    color: #3a4a3e;
+    font-size: 1.1rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 4px;
+}
+
+.post-it-remover button:hover {
+    color: #c0392b;
+}
+
+@media (max-width: 640px) {
+    .quadro-mural {
+        padding: 20px;
+    }
+
+    .post-its {
+        justify-content: center;
+    }
+
+    .post-it {
+        width: 100%;
+        max-width: 260px;
+    }
 }

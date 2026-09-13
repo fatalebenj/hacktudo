@@ -85,5 +85,23 @@ class Database
                 FOREIGN KEY (mural_id) REFERENCES murais(id) ON DELETE CASCADE
             )
         ');
+
+        // Itens (post-its) publicados no mural. Cada item guarda quem
+        // publicou (professor ou aluno) para controle de visibilidade:
+        // o professor ve o nome de todos os autores, o aluno ve apenas
+        // o proprio nome e o do professor dono do mural.
+        $pdo->exec('
+            CREATE TABLE IF NOT EXISTS mural_itens (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                mural_id INTEGER NOT NULL,
+                autor_tipo TEXT NOT NULL,
+                autor_id INTEGER NOT NULL,
+                autor_nome TEXT NOT NULL,
+                conteudo TEXT NOT NULL,
+                cor TEXT NOT NULL DEFAULT \'#f5f2e9\',
+                criado_em TEXT NOT NULL DEFAULT (datetime(\'now\')),
+                FOREIGN KEY (mural_id) REFERENCES murais(id) ON DELETE CASCADE
+            )
+        ');
     }
 }
