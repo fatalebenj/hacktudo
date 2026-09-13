@@ -38,7 +38,7 @@ include __DIR__ . '/includes/header.php';
 ?>
 
 <section class="hero">
-    <h1>Bem-vindo ao Quackdro</h1>
+    <h1>Bem-vindo ao <span class="cursivo">Quackdro</span></h1>
     <p>Ensine e aprenda em conjunto</p>
 </section>
 

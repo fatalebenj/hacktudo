@@ -19,7 +19,7 @@ require_once __DIR__ . '/../includes/Auth.php';
 
         <div class="form-group">
             <label for="cod_aluno">Código do mural</label>
-            <input type="text" id="codigo" name="codigo" placeholder="ex.: 41639" required>
+            <input type="text" id="codigo" name="codigo" placeholder="ex.: J2YP7B" required>
         </div>
 
         <button type="submit" class="btn btn-primary btn-block">Entrar</button>

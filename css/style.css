@@ -1,4 +1,6 @@
 /* ===================== RESET / BASE ===================== */
+@import url('https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -22,6 +24,10 @@ body {
 a {
     text-decoration: none;
     color: #f5f2e9;
+}
+
+.cursivo {
+    font-family: 'Shantell Sans';
 }
 
 /* ===================== HEADER ===================== */

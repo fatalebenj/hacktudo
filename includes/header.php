@@ -17,7 +17,7 @@
 
 <header class="site-header">
     <div class="container header-inner">
-        <a href="/index.php" class="logo">Quackdro</a>
+        <a href="/index.php" class="logo cursivo">Quackdro</a>
 
         <nav class="main-nav">
             <ul>

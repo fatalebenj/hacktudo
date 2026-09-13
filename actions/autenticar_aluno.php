@@ -24,7 +24,7 @@ $codigo = $_POST['codigo'] ?? '';
 [$ok, $mensagemErro] = Auth::autenticarAluno($nome, $codigo);
 
 if ($ok) {
-    header('Location: /pages/painel_aluno.php');
+    header('Location: /pages/mural.php?codigo=' . $codigo);
     exit;
 }
 
